@@ -33,7 +33,15 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				loader: 'ts-loader',
-			},
+      },
+      {
+        test: /\.html$/,
+        loader: "html-loader"
+      },
+      {
+        test: /\.scss$/,
+        loader: ["raw-loader", "sass-loader?sourceMap"]
+      }
 		],
 	},
 	node: {
@@ -51,7 +59,7 @@ module.exports = {
 			name: 'common-dependencies',
 		}),
 		new ContextReplacementPlugin(
-			/(.+)?angular(\\|\/)core(.+)?/,
+      /\@angular(\\|\/)core(\\|\/)fesm5/,
 			path.resolve(__dirname, '../src')
 			)
 	],

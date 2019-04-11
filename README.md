@@ -36,7 +36,7 @@ webpack.config.js
 ## Issues
 - Webpack config is not supporting external CSS or HTML loaded into the Angular Componentss
 - Some changes must be made on the Angular Apps before being attached to the micro-frontend mesh.
-- Stuck on Webpack 3
+- Stuck on Webpack 3 (ts loader also)
 
 ## Production build
 Go to `/dist/`

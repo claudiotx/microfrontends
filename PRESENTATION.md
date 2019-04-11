@@ -46,5 +46,26 @@ It tells to `single-spa` meta framework how to bootstrap, mount and unmount the 
 Basically it's just a spy on the framework's lifecycle hooks.
 This is the magic.
 Most frameworks are straight forward.
-Because Angular is a bit more advanced and full-blown framework, we have to change some files:
-a) 
+Because Angular is a bit more advanced and full-blown framework, we have to change some bits:
+a) No need for main.ts, we will be importing only `src/app/app.module.ts`; (for Adding the browser module, registering components and setting bootstrap component)
+
+b) Add an `index.js` for the `single-spa` to load.
+
+b) On the component/service that is reading and write to the event bus, angular won't update the DOM automatically, so on the callback of the bus reader we update a state object and invoke change detector (which has been already injected).
+Please add event bus listeners on this lifecycle method: `ngAfterContentInit` which is called when component is rendered for the first time.
+
+c) Limitation: we are using `template: require('my-template.html')` because we're using the babel html rule, external scss loading is not working yet.
+
+6. Lets a new child app!
+`cd src`
+`ng new angular-footer`
+`add the spa ./index.js for attachment purposes`
+Ok, now go to `root-app.js` and register the app for one of the routes.
+`npm start`
+Oops: 'ERROR in ./src/angular-footer/src/app/app.module.ts' Can't resolve.
+Head down to the `app.module.ts` and add a `.ts` extension on the file being loaded.
+Let's try again.
+Oops: E2E Tests are now failing
+Ok, let's update the template importing and external scss loading on the component
+Oops: Better, but another runtime error from single-spa2.
+Will take a bit of time to load, as we are running 1 common bundle (Angular4 + React15, and 2 separated bundles Angular7)

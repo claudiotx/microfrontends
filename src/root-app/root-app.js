@@ -3,12 +3,11 @@ import { start, registerApplication } from 'single-spa'
 
 const hashPrefix = prefix => location => location.hash.startsWith(`#${prefix}`)
 
-console.log('hash prefix', location.hash.startsWith('#demo1'));
-
 // /#/
 registerApplication('angularHeader', () => import('../angular-header/index.js'), hashPrefix('/'))
 registerApplication('react', () => import('../react/index.js'), hashPrefix('/'))
 registerApplication('angular', () => import('../angular/index.js'), hashPrefix('/'))
+registerApplication('angularFooter', () => import('../angular-footer/index.js'), hashPrefix('/'))
 
 // /#demo1/
 registerApplication('angularHeaderDemo1', () => import('../angular-header/index.js'), hashPrefix('demo1'))

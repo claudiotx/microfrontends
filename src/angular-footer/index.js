@@ -6,23 +6,23 @@ import mainModule from './src/app/app.module.ts';
 import { Router } from '@angular/router'
 
 const domElementGetter = () => {
-  let el = document.getElementById('angularHeader')
+  let el = document.getElementById('angularFooter')
   if (!el) {
     el = document.createElement('div')
-    el.id = 'angularHeader'
+    el.id = 'angularFooter'
     document.body.appendChild(el)
   }
 
   return el
 }
 
-console.log('got main module', mainModule)
+// console.log('got main module', appModule)
 
 const ngLifecycles = singleSpaAngular({
   domElementGetter,
   mainModule,
   angularPlatform: platformBrowserDynamic(),
-  template: `<AngularAppHeader />`,
+  template: `<AngularAppFooter />`,
   Router,
 })
 
