@@ -13,4 +13,4 @@ import { AppComponent } from './app.component.ts';
   providers: [],
   bootstrap: [AppComponent]
 })
-export default class MainModule { }
+export default class AppModule { }
